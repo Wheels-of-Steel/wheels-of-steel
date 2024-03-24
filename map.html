@@ -168,14 +168,14 @@
             filterMap('wards-layer-outline', property_name, values);
             // filterMap('routes-layer', 'route_id', ['001', '002']);
 
-            getStopsByRoutes(['053'])
-                .then((stops) => {
-                    filterMap('stops-layer', 'stop_id', stops);
-                });
-
-            getRoutesByStops(['3900', '2046'])
+            getRoutesByStops(['1570'])
                 .then((routes) => {
                     filterMap('routes-layer', 'route_id', routes);
+
+                    getStopsByRoutes(routes)
+                        .then((stops) => {
+                            filterMap('stops-layer', 'stop_id', stops);
+                        });
                 });
             // filterMap('stops-layer', 'stop_id', ['2197']);
             // const style = map.getStyle();
