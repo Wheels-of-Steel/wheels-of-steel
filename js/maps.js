@@ -1,38 +1,7 @@
-<html lang="en">
-<head>
-  <title>Bootstrap 5 Website Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
-  <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <style>
-  .fakeimg {
-    height: 200px;
-    background: #aaa;
-  }
-    body { margin: 0; padding: 0; }
-    #map { position: relative; top: 0; bottom: 0; width: 100%; height: 600px;}
-  </style>
-</head>
-<body>
+//check if js has connected
+console.log("maps.js connected");
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-sm-8" id="map">
-            </div>
-        </div>
-    </div>
-    <a id="downloadLink" href="" download="map.png">Download ↓</a>
-    
-
-    <!-- <div class="mt-5 p-4 bg-dark text-white text-center">
-        <p>Footer</p>
-    </div> -->
-    <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZW1lcnlqNiIsImEiOiJjbHU0dGRkZzUxYWxwMm5wZHJ4em50M2czIn0.oLZ_d-htIuYQbIhVuiV_JA';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZW1lcnlqNiIsImEiOiJjbHU0dGRkZzUxYWxwMm5wZHJ4em50M2czIn0.oLZ_d-htIuYQbIhVuiV_JA';
         const map = new mapboxgl.Map({
             container: 'map', // container ID
             center: [-113.38763361949056, 53.57613482614986], // starting position [lng, lat]
@@ -122,8 +91,3 @@
         var img = map.getCanvas().toDataURL('image/png')
         this.href = img
         });
-
-        
-    </script>
-
-</body>
