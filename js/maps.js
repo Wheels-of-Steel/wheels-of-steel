@@ -4,12 +4,32 @@ console.log("maps.js connected");
 mapboxgl.accessToken = 'pk.eyJ1IjoiZW1lcnlqNiIsImEiOiJjbHU0dGRkZzUxYWxwMm5wZHJ4em50M2czIn0.oLZ_d-htIuYQbIhVuiV_JA';
         const map = new mapboxgl.Map({
             container: 'map', // container ID
-            center: [-113.38763361949056, 53.57613482614986], // starting position [lng, lat]
-            zoom: 9, // starting zoom
+            center: [-113.49856196994591,53.540920434717556], // starting position [lng, lat]
+            zoom: 9.2, // starting zoom
             style: 'mapbox://styles/mapbox/streets-v9',
             preserveDrawingBuffer: true
         });
 
+        function filterMapWard() {
+            const wardInput = document.getElementById('wardList') // get input from the DOM
+            const wardValue = wardInput.value
+            filterMap('wards-layer', 'name_1', wardValue)
+            filterMap('wards-layer-outline', 'name_1', wardValue)
+            var features = map.querySourceFeatures('wards', {
+                sourceLayer: 'wards-layer',
+                filter: ["==", "name_1", wardValue]
+            });
+            // var layer = map.getLayer('wards-layer')
+            // data_source = map.getSource('wards')
+            //console.log(data_source.tileBounds.bounds)
+            map.flyTo({
+                center: features[0].geometry.coordinates[0][0],
+                zoom: 11,
+            });
+
+            
+
+        }
         function filterMap(layer_name, property_name, values) {
             map.setFilter(layer_name, ['match', ['get', property_name], values, true, false]);
         }
