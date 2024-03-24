@@ -35,67 +35,11 @@
         mapboxgl.accessToken = 'pk.eyJ1IjoiZW1lcnlqNiIsImEiOiJjbHU0dGRkZzUxYWxwMm5wZHJ4em50M2czIn0.oLZ_d-htIuYQbIhVuiV_JA';
         const map = new mapboxgl.Map({
             container: 'map', // container ID
-            center: [-113.38763361949056, 53.57613482614986], // starting position [lng, lat]
+            center: [ -113.49856196994591,53.540920434717556], // starting position [lng, lat]
             zoom: 9, // starting zoom
             style: 'mapbox://styles/mapbox/streets-v9',
             preserveDrawingBuffer: true
         });
-
-        function getStopsByRoutes(routes) {
-            return fetch("backend/data_sets/ETS_routes_stops.json")
-                .then((res) => {
-                    if (!res.ok) {
-                        throw new Error
-                            (`HTTP error! Status: ${res.status}`);
-                    }
-                    return res.json();
-                })
-                .then((data) => {
-                    console.log(data[0]);
-
-                    let stopArray = [];
-                    for (let i = 0; i < data.length; i++ )  {
-                        if ( routes.includes(data[i].route_id) ) {
-                            if ( !stopArray.includes(data[i].stop_id) ) {
-                                stopArray.push(data[i].stop_id);
-                            }
-                        }
-                    }
-                    console.log(stopArray);
-                    return stopArray;
-                })
-                .catch((error) => 
-                    console.error("Unable to fetch data:", error));
-        
-        }
-
-        function getRoutesByStops(stops) {
-            return fetch("backend/data_sets/ETS_routes_stops.json")
-                .then((res) => {
-                    if (!res.ok) {
-                        throw new Error
-                            (`HTTP error! Status: ${res.status}`);
-                    }
-                    return res.json();
-                })
-                .then((data) => {
-                    console.log(data[0]);
-
-                    let routeArray = [];
-                    for (let i = 0; i < data.length; i++ )  {
-                        if ( stops.includes(data[i].stop_id) ) {
-                            if ( !routeArray.includes(data[i].route_id) ) {
-                                routeArray.push(data[i].route_id);
-                            }
-                        }
-                    }
-                    console.log(routeArray);
-                    return routeArray;
-                })
-                .catch((error) => 
-                    console.error("Unable to fetch data:", error));
-        
-        }
 
         function filterMap(layer_name, property_name, values) {
             map.setFilter(layer_name, ['match', ['get', property_name], values, true, false]);
@@ -147,7 +91,7 @@
                 'source': 'routes',
                 'paint': {
                     'line-color': 'rgba(0, 0, 255, 1)',
-                    'line-width': 1
+                    'line-width': 2
                 }
             });
 
@@ -169,27 +113,16 @@
             filterMap('wards-layer-outline', property_name, values);
             filterMap('routes-layer', 'route_id', ['']);
             filterMap('stops-layer', 'stop_id', ['']);
-            // filterMap('routes-layer', 'route_id', ['001', '002']);
-
-            /*getRoutesByStops(['1570'])
-                .then((routes) => {
-                    filterMap('routes-layer', 'route_id', routes);
-
-                    getStopsByRoutes(routes)
-                        .then((stops) => {
-                            filterMap('stops-layer', 'stop_id', stops);
-                        });
-                }); */
-            // filterMap('stops-layer', 'stop_id', ['2197']);
             // const style = map.getStyle();
             // style.layers.find(({ id }) => id === "wards-layer").paint['fill-color']['type'] = 'identity';
             // style.layers.find(({ id }) => id === "wards-layer").paint['fill-color']['property'] = 'rgb(0, 255, 0)';
             // map.setStyle(style);
         });
-        $('#downloadLink').click(function() {
-        var img = map.getCanvas().toDataURL('image/png')
-        this.href = img
-        });
+
+        // $('#downloadLink').click(function() {
+        // var img = map.getCanvas().toDataURL('image/png')
+        // this.href = img
+        // });
 
         
     </script>

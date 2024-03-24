@@ -34,14 +34,34 @@
                   </div>
 
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Ward" aria-label="Ward" aria-describedby="button-ward">
-                    <button class="btn btn-outline-secondary" type="button" id="button-ward">Search</button>
+                    <!-- <input type="text" class="form-control" placeholder="Ward" aria-label="Ward" aria-describedby="button-ward"> -->
+                    <!-- <label for="exampleDataList" class="form-label">Datalist example</label> -->
+                    <input class="form-control" list="wardlistOptions" id="wardList" placeholder="Ward">
+                    <datalist id="wardlistOptions">
+                        <option value="Anirniq">
+                        <option value="Dene">
+                        <option value="Ipiihkoohkanipiaohtsi">
+                        <option value="Karhiio">
+                        <option value="Métis">
+                        <option value="Nakota Isga">
+                        <option value="O-day'min">
+                        <option value="Sspomitapi">
+                        <option value="papastew">
+                        <option value="pihêsiwin">
+                        <option value="sipiwiyiniwak">
+                        <option value="tastawiyiniwak">
+                    </datalist>
+                    <button class="btn btn-outline-secondary" type="button" id="button-ward" onclick="filterMapWard();">Search</button>
                   </div>
 
                   <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Route Number" aria-label="Route Number" aria-describedby="button-route">
                     <button class="btn btn-outline-secondary" type="button" id="button-route">Search</button>
                   </div>
+
+                    <div class="ward-stop-results">
+                        <!--Generate the checkboxes for this div in JS-->
+                    </div>
                   
             </div>
             <div class="map-box" id="map">
