@@ -31,12 +31,12 @@ COLORS=['#E21E26', #Red
 def random_hex_color():
     return random.choice(COLORS)
 
-def map_to_png(map, index):
+def map_to_png(map):
     map.save('map.html')
 
     hti = Html2Image(browser='edge', custom_flags=['--virtual-time-budget=10000'])
     hti.screenshot(
-        html_file='map.html', save_as=f'map{index}.png',
+        html_file='map.html', save_as=f'map0.png',
         size=(350, 250)
     )
 

@@ -24,13 +24,11 @@ def get_stops_by_ward():
 
 @app.route("/generate_png", methods=['GET'])
 def generate_png():
-    stops = request.args.get('points')
+    stop = request.args.get('points')
+    print(stop)
     # stops = ['1527']
-    i = 0
-    for stop in stops:
-        m = png.draw_stop(stop)
-        png.map_to_png(m, i)
-        i += 1
+    m = png.draw_stop(stop)
+    png.map_to_png(m)
 
     return send_file('map0.png', mimetype='image/png')
 
