@@ -22,6 +22,10 @@
           <h1>Transit Bus Stop Route Maps</h1>
     </header>
     <main>
+      <script>
+        var selectedCheckboxes = JSON.parse(sessionStorage.getItem('selectedCheckboxes'));
+        console.log(selectedCheckboxes)
+      </script>
         <section class="results">
             <!--Generate divs for each result. Sample below:-->
             <div class="result-box">

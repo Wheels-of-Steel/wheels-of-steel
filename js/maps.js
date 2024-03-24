@@ -98,6 +98,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZW1lcnlqNiIsImEiOiJjbHU0dGRkZzUxYWxwMm5wZHJ4e
                               selectedCheckboxes.push(checkbox.value);
                           }
                       });
+
+                      sessionStorage.setItem('selectedCheckboxes', JSON.stringify(selectedCheckboxes));
                   });
                 }, 500);
             })
