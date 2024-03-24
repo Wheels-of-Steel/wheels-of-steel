@@ -162,13 +162,16 @@
             
             let layer_name = 'wards-layer';
             let property_name = 'name_2';
-            let values = ['Anirniq Ward', 'Dene Ward'];
+            //let values = ['Anirniq Ward', 'Dene Ward'];
+            let values = [];
 
             filterMap(layer_name, property_name, values);
             filterMap('wards-layer-outline', property_name, values);
+            filterMap('routes-layer', 'route_id', ['']);
+            filterMap('stops-layer', 'stop_id', ['']);
             // filterMap('routes-layer', 'route_id', ['001', '002']);
 
-            getRoutesByStops(['1570'])
+            /*getRoutesByStops(['1570'])
                 .then((routes) => {
                     filterMap('routes-layer', 'route_id', routes);
 
@@ -176,7 +179,7 @@
                         .then((stops) => {
                             filterMap('stops-layer', 'stop_id', stops);
                         });
-                });
+                }); */
             // filterMap('stops-layer', 'stop_id', ['2197']);
             // const style = map.getStyle();
             // style.layers.find(({ id }) => id === "wards-layer").paint['fill-color']['type'] = 'identity';
