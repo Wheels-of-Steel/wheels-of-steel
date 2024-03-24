@@ -115,8 +115,15 @@ main {
     padding: 1rem 2rem;
 }
 
-.download-btn:hover{
+.download-btn:hover,
+.gen-btn:hover{
     background-color: #005087;
     color: white;
 }
 
+.gen-btn{
+    background-color: #0081bc;
+    color: white;
+    padding: 1rem 2rem;
+    margin-top: 3rem;
+}
