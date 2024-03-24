@@ -1,10 +1,8 @@
 import pandas as pd
 import geopandas as gpd
 import requests
-from flask import request, jsonify, json
+from flask import json
 from shapely.geometry import Polygon, Point
-from shapely.wkt import loads
-import matplotlib.pyplot as plt
 
 get_ward = "https://data.edmonton.ca/resource/b4er-5rp2.json?$query=SELECT%0A%20%20%60name_1%60%2C%0A%20%20%60name_2%60%2C%0A%20%20%60effective_start_date%60%2C%0A%20%20%60effective_end_date%60%2C%0A%20%20%60councillor%60%2C%0A%20%20%60councillor2%60%2C%0A%20%20%60geometry_multipolygon%60%0AWHERE%20caseless_eq(%60name_1%60%2C%20%22"
 all_wards = "https://data.edmonton.ca/resource/b4er-5rp2.json?$query=SELECT%20%60geometry_multipolygon%60%2C%20%60name_1%60%0AGROUP%20BY%20%60geometry_multipolygon%60%2C%20%60name_1%60"
@@ -56,7 +54,7 @@ def stops_in_ward(ward_name):
                 # Create a GeoDataFrame with ID and geometry columns
                 
                 bus_stops_gdf = gpd.GeoDataFrame({'stop_id': ids, 'geometry': points})
-                
+
                 bus_stops_within_multipolygon = gpd.sjoin(bus_stops_gdf, multipolygon_gdf, predicate='within')
 
                 return bus_stops_within_multipolygon.to_json()
@@ -64,7 +62,7 @@ def stops_in_ward(ward_name):
         else:
             print("No MultiPolygon geometry found in the DataFrame.")
     else:
-        return "Failed to fetch data from the URL"
+        return {'Error': "Failed to fetch data from the URL"}
     
     
 
