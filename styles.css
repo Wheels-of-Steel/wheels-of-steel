@@ -1,0 +1,64 @@
+header{
+    background-color: #005087;
+    background-image: linear-gradient(#0081bc, #005087);
+}
+
+nav{
+    margin: 0 4rem;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    background-color: white;
+}
+
+header h1{
+    margin: 4rem 0 0 10rem;
+    padding-bottom: 4rem;
+    color: white;
+}
+
+a:hover{
+    color: #000000;
+}
+
+nav a{
+    display: flex;
+    align-items: center;
+}
+
+nav img{
+    width: 150px;
+    height: 150px;
+}
+
+nav p{
+    margin-left: 3rem;
+    font-size: 2rem;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+section{
+    display: flex;
+    margin: 4rem 0;
+}
+
+/* Search Box */
+
+.search-box{
+    width: 40%;
+    box-shadow: 5px 5px 5px lightgrey;
+    padding-bottom: 60vh;
+}
+
+.input-group{
+    width: 80% !important;
+    border-left: solid 4px #e4a535 !important;
+}
