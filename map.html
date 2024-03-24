@@ -69,6 +69,34 @@
         
         }
 
+        function getRoutesByStops(stops) {
+            return fetch("backend/data_sets/ETS_routes_stops.json")
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error
+                            (`HTTP error! Status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log(data[0]);
+
+                    let routeArray = [];
+                    for (let i = 0; i < data.length; i++ )  {
+                        if ( stops.includes(data[i].stop_id) ) {
+                            if ( !routeArray.includes(data[i].route_id) ) {
+                                routeArray.push(data[i].route_id);
+                            }
+                        }
+                    }
+                    console.log(routeArray);
+                    return routeArray;
+                })
+                .catch((error) => 
+                    console.error("Unable to fetch data:", error));
+        
+        }
+
         function filterMap(layer_name, property_name, values) {
             map.setFilter(layer_name, ['match', ['get', property_name], values, true, false]);
         }
@@ -138,11 +166,16 @@
 
             filterMap(layer_name, property_name, values);
             filterMap('wards-layer-outline', property_name, values);
-            filterMap('routes-layer', 'route_id', ['001', '002']);
+            // filterMap('routes-layer', 'route_id', ['001', '002']);
 
-            getStopsByRoutes(['023R', '001'])
+            getStopsByRoutes(['053'])
                 .then((stops) => {
                     filterMap('stops-layer', 'stop_id', stops);
+                });
+
+            getRoutesByStops(['3900', '2046'])
+                .then((routes) => {
+                    filterMap('routes-layer', 'route_id', routes);
                 });
             // filterMap('stops-layer', 'stop_id', ['2197']);
             // const style = map.getStyle();
