@@ -50,7 +50,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZW1lcnlqNiIsImEiOiJjbHU0dGRkZzUxYWxwMm5wZHJ4e
                     for (var i in resultFeatures) {
                         ward_stops_ids.push(resultFeatures[i].properties.stop_id)
                       }
-                    //Loop through the location names
+
+                    var container = document.querySelector('.ward-stop-results');
+                    // loop through the location names
                     ward_stops_ids.forEach(function(stop_id) {
                         // Create a checkbox element
                         var checkbox = document.createElement('input');
