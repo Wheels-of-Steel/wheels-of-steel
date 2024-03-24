@@ -76,6 +76,31 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZW1lcnlqNiIsImEiOiJjbHU0dGRkZzUxYWxwMm5wZHJ4e
                         // Append the div to the container
                         container.appendChild(formCheckDiv);
                     });
+                    // Create a submit button
+                    var submitBtn = document.createElement('a');
+                    submitBtn.id = 'submitBtn';
+                    submitBtn.textContent = 'Generate Maps';
+                    submitBtn.href = 'results.html';
+                    submitBtn.classList.add('gen-btn');
+
+                  // Append the submit button to the container
+                  container.appendChild(submitBtn);
+
+                  // Add click event listener to the submit button
+                  submitBtn.addEventListener('click', function() {
+                      // Get all checkboxes within the container
+                      var checkboxes = document.querySelectorAll('.ward-stop-results input[type="checkbox"]');
+                      var selectedCheckboxes = [];
+
+                          // Loop through each checkbox to check if it is checked
+                      checkboxes.forEach(function(checkbox) {
+                          if (checkbox.checked) {
+                              selectedCheckboxes.push(checkbox.value);
+                          }
+                      });
+
+                      sessionStorage.setItem('selectedCheckboxes', JSON.stringify(selectedCheckboxes));
+                  });
                 }, 500);
             })
         }

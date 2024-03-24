@@ -22,12 +22,49 @@
           <h1>Transit Bus Stop Route Maps</h1>
     </header>
     <main>
+      <script>
+        var selectedCheckboxes = JSON.parse(sessionStorage.getItem('selectedCheckboxes'));
+        console.log(selectedCheckboxes)
+      </script>
         <section class="results">
             <!--Generate divs for each result. Sample below:-->
             <div class="result-box">
-                <img src="img/sample.png" alt="Isn't she a beauty?">
-                <p>Street Name? Don't know her.</p>
-                <span class="stop-tag">Stop ID: 69</span>
+              <!-- <script>
+                // save image from api 
+                // Function to call the API, retrieve the image, and save it
+
+                apiUrl = "http://127.0.0.1:5000/generate_png?stop=" + selectedCheckboxes[0];
+                console.log(apiUrl);
+                imageName = "stop.png";
+
+                function fetchAndSaveImage(apiUrl, imageName) {
+                    fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.blob();
+                    })
+                    .then(imageBlob => {
+                        // Create a new FileReader
+                        var reader = new FileReader();
+                        reader.onload = function() {
+                            // Once the image is loaded, save it to local storage
+                            localStorage.setItem(imageName, reader.result);
+                            console.log('Image saved:', imageName);
+                        };
+                        // Read the image blob as Data URL
+                        reader.readAsDataURL(imageBlob);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching image:', error);
+                    });
+                }
+
+                fetchAndSaveImage(apiUrl, imageName);
+              </script> -->
+                <img src="img/stop.png" alt="Isn't she a beauty?">
+                <span class="stop-tag">Stop ID: </span>
             </div>
         </section>
         <section class="download">
